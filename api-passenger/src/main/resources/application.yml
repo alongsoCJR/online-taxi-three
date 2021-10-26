@@ -1,0 +1,24 @@
+server:
+  port: 8000
+spring:
+  application:
+    name: api-passenger
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://alongso:123456@localhost:7900/eureka/
+
+
+# 集群部署
+---
+spring:
+  profiles: 8001
+server:
+  port: 8001
+
+---
+spring:
+  profiles: 8002
+server:
+  port: 8002

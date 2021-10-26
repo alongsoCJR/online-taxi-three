@@ -1,0 +1,37 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: consumer
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://alongso:123456@localhost:7900/eureka/
+    # 将自己真正的健康状态传播到server。
+    healthcheck:
+      enabled: true
+
+# 暴露所有接口，默认只暴露health接口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  # http://127.0.0.1:9001//actuator/shutdown 可手动停调服务
+  endpoint:
+    shutdown:
+      enabled: true
+
+# 针对某个服务指定
+#api-passenger:
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+ribbon:
+  NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
+  listOfServers: localhost:8001
+  eureka:
+    enabled: false
