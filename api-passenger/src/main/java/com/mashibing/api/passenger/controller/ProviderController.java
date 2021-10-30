@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collections;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 @RestController
 public class ProviderController {
@@ -19,11 +18,6 @@ public class ProviderController {
 
     @RequestMapping("getHi")
     public String getHi() {
-//        try {
-//            TimeUnit.SECONDS.sleep(2);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
         return "Hi,My Port is " + port;
     }
 
