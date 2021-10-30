@@ -24,7 +24,7 @@ public interface BaseApi {
      * @Param [id]
      * @return java.lang.String
      **/
-    @RequestMapping("/getUserNameById")
-    String getUserNameById(@RequestParam("id")  Integer id);
+    @GetMapping("/getUserNameById")
+    String getUserNameById(@RequestParam Integer id);
 
 }
