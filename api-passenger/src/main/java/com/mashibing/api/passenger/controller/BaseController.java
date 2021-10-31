@@ -35,6 +35,12 @@ public class BaseController implements BaseApi {
     }
 
     @Override
+    public String hello() {
+        int i = 1 / 0;
+        return "hello";
+    }
+
+    @Override
     public String getUserNameById(Integer id) {
         return "along" + id;
     }

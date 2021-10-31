@@ -16,6 +16,9 @@ public interface BaseApi {
     @GetMapping("/alive")
     String alive();
 
+    @GetMapping("/hello")
+    String hello();
+
     /**
      * @return java.lang.String
      * @Author Jianrong.Chen

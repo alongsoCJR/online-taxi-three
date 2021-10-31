@@ -51,6 +51,11 @@ public class ConsumerFallBackFactory implements FallbackFactory<ConsumerApi> {
             }
 
             @Override
+            public String hello() {
+                return null;
+            }
+
+            @Override
             public String getUserNameById(Integer id) {
                 return null;
             }
