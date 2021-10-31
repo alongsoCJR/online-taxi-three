@@ -50,6 +50,7 @@ public class BaseController implements BaseApi {
     public Map<Integer, String> getMap(@RequestParam("id") Integer id) {
         // TODO Auto-generated method stub
         System.out.println(id);
+        int i = 1 / 0;
         return Collections.singletonMap(id, "mmeme");
     }
 

@@ -43,3 +43,7 @@ ribbon:
   MaxAutoRetriesNextServer: 0
   #是否所有操作都重试
   OkToRetryOnAllOperations: false
+
+feign:
+  hystrix:
+    enabled: true

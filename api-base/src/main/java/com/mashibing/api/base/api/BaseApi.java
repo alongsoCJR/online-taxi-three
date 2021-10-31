@@ -3,7 +3,7 @@ package com.mashibing.api.base.api;
 import com.mashibing.api.base.dto.PersonDTO;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/base")
+//@RequestMapping("/base")
 public interface BaseApi {
 
     /**
