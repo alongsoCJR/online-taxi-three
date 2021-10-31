@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
+
 @RestController
 public class BaseController {
 
@@ -13,6 +15,7 @@ public class BaseController {
 
     @GetMapping("/base")
     public String alive() {
+        System.out.println("requestTime:" + new Date());
         return baseApi.alive();
     }
 }

@@ -16,9 +16,14 @@ spring:
   profiles: 8001
 server:
   port: 8001
+sleep:
+  time: 1
 
 ---
 spring:
   profiles: 8002
 server:
   port: 8002
+sleep:
+  time: 3
+
