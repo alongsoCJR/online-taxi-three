@@ -4,3 +4,24 @@ server:
 spring:
   application:
     name: cloud-admin
+  # 邮件配置
+  mail:
+    host: smtp.qq.com
+    username: 123456@qq.com
+    # qq邮箱授权码
+    password: oskommhacg
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  boot:
+    admin:
+      notify:
+        mail:
+          # 邮件发送给谁
+          to: alongso@163.com
+          # 邮件是谁发出的
+          from: 123456@qq.com
