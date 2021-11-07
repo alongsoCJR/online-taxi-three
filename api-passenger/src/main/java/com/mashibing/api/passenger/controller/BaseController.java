@@ -25,11 +25,11 @@ public class BaseController implements BaseApi {
 
     @Override
     public String alive() {
-        try {
-            TimeUnit.SECONDS.sleep(sleepTime);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            TimeUnit.SECONDS.sleep(sleepTime);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         System.out.println("Date:" + new Date() + "===port:" + port + ",第几次调用：" + atomicInteger.incrementAndGet());
         return "port:" + port;
     }

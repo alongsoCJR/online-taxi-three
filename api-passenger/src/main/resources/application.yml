@@ -3,7 +3,14 @@ server:
 spring:
   application:
     name: api-passenger
-
+  #zipkin
+  zipkin:
+    base-url: http://127.0.0.1:9411/
+    sender: web
+  #采样比例1
+  sleuth:
+    sampler:
+      rate: 1
 eureka:
   client:
     service-url:

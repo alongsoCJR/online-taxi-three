@@ -4,7 +4,13 @@ server:
 spring:
   application:
     name: consumer
-
+  #zipkin
+  zipkin:
+    base-url: http://127.0.0.1:9411/
+    #采样比例1
+  sleuth:
+    sampler:
+      rate: 1
 
 eureka:
   client:
@@ -53,3 +59,5 @@ hystrix:
       execution:
         isolation:
           strategy: SEMAPHORE
+
+
