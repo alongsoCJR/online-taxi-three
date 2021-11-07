@@ -1,0 +1,35 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: cloud-zuul
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://alongso:123456@localhost:7900/eureka/
+api-passenger:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+      enabled: true
+    routes:
+      enabled: true
+zuul:
+  prefix: /api/v1
+  strip-prefix: false
+#  routes:
+#    xx:
+#      path: /xx/**
+#      url:  http://mashibing.com
+#    api-passenger: /xxoo/**
