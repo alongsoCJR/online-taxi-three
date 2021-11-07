@@ -7,6 +7,13 @@ spring:
   cloud:
     config:
       uri: http://localhost:9999/
+      # 如果不设置默认为master分支
+      label: dev
+      # 匹配规则 /{name}-{profiles}.properties
+      #/{name}-{profiles}.yml
+      #/{name}-{profiles}.json
+      #/{label}/{name}-{profiles}.yml
+      profile: dev
   #zipkin
   zipkin:
     base-url: http://127.0.0.1:9411/
