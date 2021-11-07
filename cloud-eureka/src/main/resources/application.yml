@@ -1,15 +1,19 @@
 spring:
   application:
     name: cloud-eureka
-  artemis:
-    embedded:
-      server-id:
-  security:
-    user:
-      roles: admin
-      name: alongso
-      password: 123456
-
+    # 使用admin需要把权限关掉
+#  artemis:
+#    embedded:
+#      server-id:
+#  security:
+#    user:
+#      roles: admin
+#      name: alongso
+#      password: 123456
+  boot:
+    admin:
+      client:
+        url: http://127.0.0.1:8888
 server:
   port: 7900
 # 单机部署
@@ -32,6 +36,18 @@ eureka:
         use-read-only-response-cache: false
         # readWrite 和 readOnly 同步时间间隔。
         response-cache-update-interval-ms: 1000
+
+
+
+# 暴露所有接口，默认只暴露health接口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
 
 #
 ## 集群部署

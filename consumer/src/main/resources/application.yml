@@ -11,11 +11,16 @@ spring:
   sleuth:
     sampler:
       rate: 1
+  boot:
+    admin:
+      client:
+        url: http://127.0.0.1:8888
 
 eureka:
   client:
     service-url:
-      defaultZone: http://alongso:123456@localhost:7900/eureka/
+#      defaultZone: http://alongso:123456@localhost:7900/eureka/
+      defaultZone: http://localhost:7900/eureka/
     # 将自己真正的健康状态传播到server。
     healthcheck:
       enabled: true
@@ -30,6 +35,9 @@ management:
   endpoint:
     shutdown:
       enabled: true
+    health:
+      show-details: always
+
 
 # 针对某个服务指定
 #api-passenger:

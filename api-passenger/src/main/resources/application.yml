@@ -11,10 +11,28 @@ spring:
   sleuth:
     sampler:
       rate: 1
+  boot:
+    admin:
+      client:
+        url: http://127.0.0.1:8888
 eureka:
   client:
     service-url:
-      defaultZone: http://alongso:123456@localhost:7900/eureka/
+#      defaultZone: http://alongso:123456@localhost:7900/eureka/
+      defaultZone: http://localhost:7900/eureka/
+
+# 暴露所有接口，默认只暴露health接口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  # http://127.0.0.1:9001//actuator/shutdown 可手动停调服务
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
 
 
 # 集群部署
