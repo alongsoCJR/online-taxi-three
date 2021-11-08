@@ -9,8 +9,20 @@ spring:
       server:
         git:
           uri: https://github.com/alongsoCJR/SpringCloud-Config-Center.git
+  rabbitmq:
+    host: 81.70.**.***
+    port: 5672
+    username: root
+    password: rabbitmq
+
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:7900/eureka/
 
+# 暴露所有接口，默认只暴露health接口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

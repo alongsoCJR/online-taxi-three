@@ -1,5 +1,5 @@
 server:
-  port: 9001
+  port: 9000
 
 spring:
   application:
@@ -26,7 +26,11 @@ spring:
       client:
         url: http://127.0.0.1:8888
 
-
+  rabbitmq:
+    host: 81.70.**.***
+    port: 5672
+    username: root
+    password: rabbitmq
 eureka:
   client:
     service-url:
@@ -81,6 +85,15 @@ hystrix:
 
 
 
+# 集群部署
+---
+spring:
+  profiles: 9001
+server:
+  port: 9001
 
-
-
+---
+spring:
+  profiles: 9002
+server:
+  port: 9002
