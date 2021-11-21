@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: service-verification-code
+
+server:
+  port: 19000
+
+eureka:
+  client:
+    enabled: false

@@ -14,28 +14,28 @@ spring:
     admin:
       client:
         url: http://127.0.0.1:8888
-server:
-  port: 7900
-# 单机部署
-eureka:
-  client:
-    # 是否将自己注册到eureka server
-    register-with-eureka: false
-    # 是否向eureka server 获取注册信息
-    fetch-registry: false
-    service-url:
-      defaultZone: http://localhost:7900/eureka/
-      server:
-        # 自我保护，看服务多少。
-        enable-self-preservation: false
-        # 自我保护阈值
-        renewal-percent-threshold: 0.85
-        # 剔除服务时间间隔
-        eviction-interval-timer-in-ms: 1000
-        # 关闭从readOnly读注册表
-        use-read-only-response-cache: false
-        # readWrite 和 readOnly 同步时间间隔。
-        response-cache-update-interval-ms: 1000
+#server:
+#  port: 7900
+## 单机部署
+#eureka:
+#  client:
+#    # 是否将自己注册到eureka server
+#    register-with-eureka: false
+#    # 是否向eureka server 获取注册信息
+#    fetch-registry: false
+#    service-url:
+#      defaultZone: http://localhost:7900/eureka/
+#      server:
+#        # 自我保护，看服务多少。
+#        enable-self-preservation: false
+#        # 自我保护阈值
+#        renewal-percent-threshold: 0.85
+#        # 剔除服务时间间隔
+#        eviction-interval-timer-in-ms: 1000
+#        # 关闭从readOnly读注册表
+#        use-read-only-response-cache: false
+#        # readWrite 和 readOnly 同步时间间隔。
+#        response-cache-update-interval-ms: 1000
 
 
 
@@ -49,58 +49,58 @@ management:
     health:
       show-details: always
 
-#
-## 集群部署
-#---
-#spring:
-#    profiles: 7900
-#server:
-#  port: 7900
-#eureka:
-#  instance:
-#    hostname: eureka-7900
-#  client:
-#    # 是否将自己注册到eureka server
-#    register-with-eureka: true
-#    # 是否向eureka server 获取注册信息
-#    fetch-registry: true
-#    service-url:
-#      defaultZone: http://eureka-7901:7901/eureka/,http://eureka-7902:7902/eureka/
-#
-#
-#
-#---
-#spring:
-#  profiles: 7901
-#server:
-#  port: 7901
-#eureka:
-#  instance:
-#    hostname: eureka-7901
-#  client:
-#    # 是否将自己注册到eureka server
-#    register-with-eureka: true
-#    # 是否向eureka server 获取注册信息
-#    fetch-registry: true
-#    service-url:
-#      defaultZone: http://eureka-7900:7900/eureka/,http://eureka-7902:7902/eureka/
-#
-#
-#
-#---
-#spring:
-#  profiles: 7902
-#server:
-#  port: 7902
-#eureka:
-#  instance:
-#    hostname: eureka-7902
-#  client:
-#    # 是否将自己注册到eureka server
-#    register-with-eureka: true
-#    # 是否向eureka server 获取注册信息
-#    fetch-registry: true
-#    service-url:
-#      defaultZone: http://eureka-7900:7900/eureka/,http://eureka-7901:7901/eureka/
-#
-#
+
+# 集群部署
+---
+spring:
+    profiles: 7900
+server:
+  port: 7900
+eureka:
+  instance:
+    hostname: eureka-7900
+  client:
+    # 是否将自己注册到eureka server
+    register-with-eureka: true
+    # 是否向eureka server 获取注册信息
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka-7901:7901/eureka/,http://eureka-7902:7902/eureka/
+
+
+
+---
+spring:
+  profiles: 7901
+server:
+  port: 7901
+eureka:
+  instance:
+    hostname: eureka-7901
+  client:
+    # 是否将自己注册到eureka server
+    register-with-eureka: true
+    # 是否向eureka server 获取注册信息
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka-7900:7900/eureka/,http://eureka-7902:7902/eureka/
+
+
+
+---
+spring:
+  profiles: 7902
+server:
+  port: 7902
+eureka:
+  instance:
+    hostname: eureka-7902
+  client:
+    # 是否将自己注册到eureka server
+    register-with-eureka: true
+    # 是否向eureka server 获取注册信息
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka-7900:7900/eureka/,http://eureka-7901:7901/eureka/
+
+
