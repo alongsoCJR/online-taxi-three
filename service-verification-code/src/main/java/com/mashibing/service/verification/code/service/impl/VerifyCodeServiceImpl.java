@@ -1,14 +1,24 @@
 package com.mashibing.service.verification.code.service.impl;
 
+import com.mashibing.internal.common.constant.CommonStatusEnum;
 import com.mashibing.internal.common.dto.ResponseResult;
-import com.mashibing.internal.common.dto.serviceverificationcode.VerifyCodeResponse;
+import com.mashibing.internal.common.dto.serviceverificationcode.response.VerifyCodeResponse;
+import com.mashibing.internal.common.util.RedisKeyUtil;
 import com.mashibing.service.verification.code.service.VerifyCodeService;
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.BoundValueOperations;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class VerifyCodeServiceImpl implements VerifyCodeService {
+
+    @Autowired
+    private StringRedisTemplate redisTemplate;
 
     @Override
     public ResponseResult<VerifyCodeResponse> generate(int identity, String phoneNumber) {
@@ -17,35 +27,47 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
 
         String code = String.valueOf((int) ((Math.random() * 9 + 1) * Math.pow(10, 5)));
 
+
+        //生成redis key
+        String keyPre = RedisKeyUtil.generateKeyPreByIdentity(identity);
+        String key = keyPre + phoneNumber;
+
+        //存redis，2分钟过期
+        BoundValueOperations<String, String> codeRedis = redisTemplate.boundValueOps(key);
+
+//        Boolean aBoolean = codeRedis.setIfAbsent(code);
+//        if (aBoolean){
+//            codeRedis.expire(2,TimeUnit.MINUTES);
+//        }
+        codeRedis.set(code,2, TimeUnit.MINUTES);
         VerifyCodeResponse data = new VerifyCodeResponse();
         data.setCode(code);
         return ResponseResult.success(data);
     }
 
     /**
-     * 用户 传进里来的验证码 和 redis 中 验证码 一直 ，校验通过，否则不过。
+     * 用户 传进里来的验证码 和 redis 中 验证码 一致 ，校验通过，否则不过。
      *
      * @param identity
      * @param phoneNumber
      * @param code
      * @return
      */
+    @Override
     public ResponseResult verify(int identity, String phoneNumber, String code) {
         //生成redis key
-//        String keyPre = RedisKeyUtil.generateKeyPreByIdentity(identity);
-//        String key = keyPre + phoneNumber;
-//        BoundValueOperations<String, String> codeRedis = redisTemplate.boundValueOps(key);
-//        String redisCode = codeRedis.get();
-//
-//        if(StringUtils.isNotBlank(code)
-//                && StringUtils.isNotBlank(redisCode)
-//                && code.trim().equals(redisCode.trim())) {
-//            return ResponseResult.success("");
-//        }else {
-//            return ResponseResult.fail(CommonStatusEnum.VERIFY_CODE_ERROR.getCode(), CommonStatusEnum.VERIFY_CODE_ERROR.getValue());
-//        }
+        String keyPre = RedisKeyUtil.generateKeyPreByIdentity(identity);
+        String key = keyPre + phoneNumber;
+        BoundValueOperations<String, String> codeRedis = redisTemplate.boundValueOps(key);
+        String redisCode = codeRedis.get();
 
-        return null;
+        if (StringUtils.isNotBlank(code)
+                && StringUtils.isNotBlank(redisCode)
+                && code.trim().equals(redisCode.trim())) {
+            return ResponseResult.success("");
+        } else {
+            return ResponseResult.fail(CommonStatusEnum.VERIFY_CODE_ERROR.getCode(), CommonStatusEnum.VERIFY_CODE_ERROR.getValue());
+        }
     }
 
     public static void main(String[] args) {

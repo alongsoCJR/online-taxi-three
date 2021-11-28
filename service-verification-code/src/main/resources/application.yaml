@@ -1,6 +1,10 @@
 spring:
   application:
     name: service-verification-code
+  redis:
+    host: 81.70.55.239
+    port: 6379
+    password: ALLFOOBAR
 
 server:
   port: 19000
@@ -8,3 +12,5 @@ server:
 eureka:
   client:
     enabled: false
+
+
