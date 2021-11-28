@@ -6,6 +6,7 @@ import com.mashibing.service.verification.code.service.VerifyCodeService;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,13 +18,13 @@ public class VerifyCodeController {
     VerifyCodeService verifyCodeService;
 
     @GetMapping("/generate/{identity}/{phoneNumber}")
-    public ResponseResult generate(@PathVariable("identity") int identity, @PathVariable("phoneNumber") String phoneNumber) {
+    public ResponseResult generate(@PathVariable("identity") int identity, @PathVariable("phoneNumber")  String phoneNumber) {
         log.info("/generate/{identity}/{phoneNumber} ： 身份类型：" + identity + ",手机号：" + phoneNumber);
         return verifyCodeService.generate(identity, phoneNumber);
     }
 
     @PostMapping("/verify")
-    public ResponseResult verify(@RequestBody VerifyCodeRequest request) {
+    public ResponseResult verify(@Validated @RequestBody VerifyCodeRequest request) {
         log.info("/verify-code/verify  request:" + JSONObject.fromObject(request));
         //获取手机号和验证码
         String phoneNumber = request.getPhoneNumber();
