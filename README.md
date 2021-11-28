@@ -63,5 +63,22 @@
    //        if (aBoolean){
    //            codeRedis.expire(2,TimeUnit.MINUTES);
    //        }
-           codeRedis.set(code,2, TimeUnit.MINUTES);```
+           codeRedis.set(code,2, TimeUnit.MINUTES);
+```
 
+思考
+验证码：先发短信还是先放缓存？
+
+与乘客端的接口交互都在api-passenger
+提供的主要两个接口：获取验证码、登陆
+参考：VerificationCodeController、AuthController
+
+#### 网关token校验
+过滤器Filter
+```
+shouldFilter——是否执行run方法
+filterOrder——过滤器执行顺序
+```
+
+如果token鉴权不通过，后面的过滤器仍会执行，但是不会路由到其他服务
+有一个好的中断别的过滤器的执行，方法是：通过shouldFilter传参数来指定

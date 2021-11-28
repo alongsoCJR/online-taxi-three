@@ -4,30 +4,35 @@ server:
 spring:
   application:
     name: cloud-zuul
-
+  redis:
+    host: 81.70.**.***
+    port: 6379
+    password: ALLFOOBAR
 
 eureka:
   client:
     service-url:
-      defaultZone: http://alongso:123456@localhost:7900/eureka/
-api-passenger:
-  ribbon:
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+#      defaultZone: http://alongso:123456@localhost:7900/eureka/
+      defaultZone: http://localhost:7900/eureka/
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
-  endpoint:
-    health:
-      show-details: always
-      enabled: true
-    routes:
-      enabled: true
-zuul:
-  prefix: /api/v1
-  strip-prefix: false
+#api-passenger:
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+#
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+#  endpoint:
+#    health:
+#      show-details: always
+#      enabled: true
+#    routes:
+#      enabled: true
+#zuul:
+#  prefix: /api/v1
+#  strip-prefix: false
 #  routes:
 #    xx:
 #      path: /xx/**

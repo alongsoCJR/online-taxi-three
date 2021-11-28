@@ -2,7 +2,7 @@ spring:
   application:
     name: service-verification-code
   redis:
-    host: 81.70.55.239
+    host: 81.70.**.***
     port: 6379
     password: ALLFOOBAR
 
@@ -11,6 +11,8 @@ server:
 
 eureka:
   client:
-    enabled: false
+    service-url:
+      #      defaultZone: http://alongso:123456@localhost:7900/eureka/
+      defaultZone: http://localhost:7900/eureka/
 
 
