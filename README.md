@@ -82,3 +82,25 @@ filterOrder——过滤器执行顺序
 
 如果token鉴权不通过，后面的过滤器仍会执行，但是不会路由到其他服务
 有一个好的中断别的过滤器的执行，方法是：通过shouldFilter传参数来指定
+
+
+### DAY9 计价时序图（订单与派单）
+1. 程序开发的效率取决于需求明确
+2. BigDicamal定义方式用String，小数二进制如何计算？
+![小数二进制表示方式](https://github.com/alongsoCJR/online-taxi-three/blob/online-taxi-three/doc/image/Xnip2021-11-28_19-50-30.jpg)
+3. 微服务设计可以参考 类的单一职责原则
+```text
+1. 原料、操作
+2. 门、开门
+```
+4. 系统设计需要考虑的地方
+```text
+隔离系统的变化点
+```
+5. 电商-订单系统涉及到的两个点
+```text
+1. 性能
+2. 数据一致性
+```
+
+
