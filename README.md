@@ -103,4 +103,13 @@ filterOrder——过滤器执行顺序
 2. 数据一致性
 ```
 
+### 过滤器Filter与监听器Intercepter
+1. 过滤器先执行，监听器后执行
+2. Filter需要在web.xml中配置，依赖于Servlet
+3. Interceptor需要在SpringMVC中配置，依赖于框架
+
+两者的区别
+1. 拦截器（Interceptor）是基于Java的反射机制，而过滤器（Filter）是基于函数回调。从灵活性上说拦截器功能更强大些，Filter能做的事情，都能做，而且可以在请求前，请求后执行，比较灵活。
+
+![参考](https://blog.csdn.net/zxd1435513775/article/details/80556034#:~:text=%E4%B8%A4%E8%80%85%E7%9A%84%E6%9C%AC%E8%B4%A8%E5%8C%BA%E5%88%AB,%E8%AF%B7%E6%B1%82%E5%90%8E%E6%89%A7%E8%A1%8C%EF%BC%8C%E6%AF%94%E8%BE%83%E7%81%B5%E6%B4%BB%E3%80%82)
 
